@@ -1,5 +1,6 @@
-  // int[]arr=new int[5];
-        // // input using for loops
-        // for (int i = 0; i < arr.length; i++) {
-        //     arr[i]=in.nextInt();
-        // }
+    public static void main(String[] args) {
+        String name="irfan";
+        char target='e';
+        System.out.println(search2(name,target));
+    }
+   
