@@ -10,7 +10,7 @@ public class firstAndLastPositionInSortedArray {
     }
     static public int[] searchRange(int[] nums,int target){
 
-        int[] ans={-1,1};
+        int[] ans={-1,-1};
 
         // check for first occurance if target found
         ans[0]=search(nums, target,true);
@@ -22,7 +22,7 @@ public class firstAndLastPositionInSortedArray {
         
     }
     // this function just returns the index value of the target
-   static public int search(int[] nums,int target,boolean findStartIndex){
+   static public int search(int[] nums,int target,boolean findStartindex){
         int ans=-1;
         int start = 0;
         int end = nums.length - 1;
@@ -39,7 +39,7 @@ public class firstAndLastPositionInSortedArray {
             } else {
                 // potential ans is found
                 ans=mid;
-                if(findStartIndex==true){
+                if(findStartindex==true){
                     end=mid-1;
                 }
                 else{
