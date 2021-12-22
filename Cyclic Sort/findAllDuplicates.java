@@ -6,7 +6,7 @@ public class findAllDuplicates {
 
     }
 
-    static List<Integer> duplicate(int[] arr) {
+    static List<Integer> allduplicate(int[] arr) {
         int i = 0;
         while (i < arr.length) {
             int correct = arr[i] - 1;
