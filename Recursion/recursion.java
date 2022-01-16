@@ -1,5 +1,3 @@
-import javax.print.event.PrintEvent;
-
 public class recursion {
     public static void main(String[] args) {
         print(1);
