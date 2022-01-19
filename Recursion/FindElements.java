@@ -6,6 +6,7 @@ public class FindElements {
         System.out.println(findIndex(arr, 5, 0));
         System.out.println(find(arr, 5, 0));
         System.out.println(findAllIndex(arr, 5, 0, new ArrayList<>()));
+        System.out.println(findAllIndex2(arr, 5, 0));
     }
 
     static boolean find(int[] arr, int target, int index) {
@@ -34,5 +35,19 @@ public class FindElements {
             list.add(index);
         }
         return findAllIndex(arr, target, index + 1, list);
+    }
+
+    static ArrayList findAllIndex2(int[] arr, int target, int index) {
+        ArrayList<Integer> list = new ArrayList<>();
+        if (index == arr.length) {
+            return list;
+        }
+        // this will contain answer for that function call only.
+        if (arr[index] == target) {
+            list.add(index);
+        }
+        ArrayList<Integer> ansFromBelowCalls = findAllIndex2(arr, target, index + 1);
+        list.addAll(ansFromBelowCalls);
+        return list;
     }
 }
