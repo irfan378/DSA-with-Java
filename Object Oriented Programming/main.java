@@ -12,7 +12,12 @@ public class main {
         float[] marks = new float[5];
 
         Student[] students = new Student[5];
-        Student Irfan;
+        // Student Irfan;
+        // Irfan = new Student();
+
+        Student irfan = new Student();
+        System.out.println(irfan.rno);
+
     }
 
     class Student {
