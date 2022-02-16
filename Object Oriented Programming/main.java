@@ -16,14 +16,27 @@ public class main {
         // Irfan = new Student();
 
         Student irfan = new Student();
-        System.out.println(irfan.rno);
+        // irfan.rno = 2;
+        // irfan.name2 = "Irfan";
+        // irfan.marks = 90;
 
+        System.out.println(irfan.name2);
+        System.out.println(irfan.rno);
+        System.out.println(irfan.marks);
     }
 
-    class Student {
-        int[] rno = new int[5];
-        String[] name2 = new String[5];
-        float[] marks = new float[5];
+    static class Student {
+        int rno;
+        String name2;
+        float marks;
+
+        // we need a way to add the value of the above properties object by object.
+        // we need one word to access every object.
+        Student() {
+            this.rno = 13;
+            this.name2 = "Irfan";
+            this.marks = 90;
+        }
     }
 
 }
