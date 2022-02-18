@@ -32,7 +32,12 @@ public class main {
         // System.out.println(irfan.rno);
         // System.out.println(irfan.marks);
 
-        Student random = new Student(irfan);
+        // Student random = new Student(irfan);
+        // System.out.println(random.name2);
+        // System.out.println(random.rno);
+        // System.out.println(random.marks);
+
+        Student random = new Student();
         System.out.println(random.name2);
         System.out.println(random.rno);
         System.out.println(random.marks);
@@ -62,6 +67,12 @@ public class main {
             this.rno = 13;
             this.name2 = "Irfan";
             this.marks = 90;
+        }
+
+        Student() {
+            // this is how you call a constructor in a constructor.
+            // internally:new Student(13, "default person", 90);
+            this(12, "Irfan", 98);
         }
 
         Student(Student other) {
