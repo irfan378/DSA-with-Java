@@ -34,6 +34,35 @@ public class SinglyLinkedList {
 
         }
 
+        public void insert(int val, int index) {
+            if (index == 0) {
+                insertFirst(val);
+                return;
+            }
+            if (index == size) {
+                insertLast(val);
+                return;
+            }
+            Node temp = head;
+            for (int i = 1; i < index; i++) {
+                temp = temp.next;
+            }
+            Node node = new Node(val, temp.next);
+            temp.next = node;
+
+            size++;
+        }
+
+        public int deleteFirst() {
+            int val = head.value;
+            head = head.next;
+            if (head == null) {
+                tail = null;
+            }
+            size--;
+            return val;
+        }
+
         public void display() {
             Node temp = head;
             while (temp != null) {
@@ -66,6 +95,9 @@ public class SinglyLinkedList {
         list.insertFirst(5);
         list.insertFirst(10);
         list.insertLast(99);
+        list.insert(55, 4);
+        list.display();
+        System.out.println(list.deleteFirst());
         list.display();
     }
 
