@@ -1,5 +1,3 @@
-import java.util.concurrent.PriorityBlockingQueue;
-
 public class SinglyLinkedList {
     public static class LL {
         private Node head;
@@ -63,6 +61,51 @@ public class SinglyLinkedList {
             return val;
         }
 
+        public int deleteLast() {
+            if (size <= 1) {
+                return deleteFirst();
+            }
+            int val = tail.value;
+            Node secondLast = get(size - 2);
+            tail = secondLast;
+            tail.next = null;
+            return val;
+        }
+
+        public int delete(int index) {
+            if (index == 0) {
+                return deleteFirst();
+            }
+            if (index == size - 1) {
+                return deleteLast();
+            }
+            Node prev = get(index - 1);
+            int val = prev.next.value;
+
+            prev.next = prev.next.next;
+
+            return val;
+        }
+
+        public Node get(int index) {
+            Node node = head;
+            for (int i = 0; i < index; i++) {
+                node = node.next;
+            }
+            return node;
+        }
+
+        public Node find(int value) {
+            Node node = head;
+            while (node != null) {
+                if (node.value == value) {
+                    return node;
+                }
+                node = node.next;
+            }
+            return null;
+        }
+
         public void display() {
             Node temp = head;
             while (temp != null) {
@@ -99,6 +142,11 @@ public class SinglyLinkedList {
         list.display();
         System.out.println(list.deleteFirst());
         list.display();
+        System.out.println(list.deleteLast());
+        list.display();
+        System.out.println(list.delete(2));
+        list.display();
+
     }
 
 }
