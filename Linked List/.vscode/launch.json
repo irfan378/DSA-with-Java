@@ -1,0 +1,42 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Attach",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": "<debug port of the debuggee>"
+    },
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch CircularLinkedList",
+      "request": "launch",
+      "mainClass": "CircularLinkedList",
+      "projectName": "Linked List_158399a4"
+    },
+    {
+      "type": "java",
+      "name": "Launch DoublyLinkedList",
+      "request": "launch",
+      "mainClass": "DoublyLinkedList",
+      "projectName": "Linked List_158399a4"
+    },
+    {
+      "type": "java",
+      "name": "Launch SinglyLinkedList",
+      "request": "launch",
+      "mainClass": "SinglyLinkedList",
+      "projectName": "Linked List_158399a4"
+    }
+  ]
+}
