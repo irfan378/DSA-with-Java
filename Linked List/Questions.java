@@ -253,6 +253,41 @@ public class Questions {
             return s;
         }
 
+        public boolean isHappy(int n) {
+            int slow = n;
+            int fast = n;
+
+            do {
+                slow = findSquare(slow);
+                fast = findSquare(fast);
+
+            } while (fast != slow);
+            if (slow == 1) {
+                return true;
+            }
+            return false;
+        }
+
+        private int findSquare(int number) {
+            int ans = 0;
+            while (number > 0) {
+                int rem = number % 10;
+                ans += rem * rem;
+                number = number / 10;
+            }
+            return ans;
+        }
+
+        public Node middle(Node head) {
+            Node fast = head;
+            Node slow = head;
+            while (fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+
     }
 
     public static void main(String[] args) {
