@@ -332,6 +332,27 @@ public class Questions {
             tail = node;
             tail.next = null;
         }
+
+        // Inplace reversal of linked list
+        public Node reverseLL(Node head) {
+            if (head == null) {
+                return head;
+            }
+            Node prev = null;
+            Node present = head;
+            Node next = present.next;
+            while (present != null) {
+                present.next = prev;
+                prev = present;
+                present = next;
+                if (next != null) {
+                    next = next.next;
+                }
+            }
+
+            return prev;
+        }
+
     }
 
     public static void main(String[] args) {
