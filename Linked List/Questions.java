@@ -385,6 +385,23 @@ public class Questions {
             return head;
         }
 
+        public boolean isPalindrome(Node head) {
+            Node mid = middle(head);
+            Node headSecond = reverseLL(mid);
+            Node reverseHead = headSecond;
+
+            // compare both the values
+            while (head != null && headSecond != null) {
+                if (head.value != headSecond.value) {
+                    break;
+                }
+                head = head.next;
+                headSecond = headSecond.next;
+            }
+            reverseLL(reverseHead);
+            return head == null || headSecond == null;
+
+        }
     }
 
     public static void main(String[] args) {
