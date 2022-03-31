@@ -402,6 +402,31 @@ public class Questions {
             return head == null || headSecond == null;
 
         }
+
+        public void reorderList(Node head) {
+            if (head == null || head.next == null) {
+                return;
+            }
+            Node mid = middle(head);
+            Node hs = reverseLL(mid);
+            Node hf = head;
+
+            // rearrange
+            while (hf != null && hs != null) {
+                Node temp = hf.next;
+                hf.next = hs;
+                hf = temp;
+
+                temp = hs.next;
+                hs.next = hf;
+                hs = temp;
+            }
+
+            // next of tail to null
+            if (hf != null) {
+                hf.next = null;
+            }
+        }
     }
 
     public static void main(String[] args) {
