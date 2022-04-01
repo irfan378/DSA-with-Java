@@ -427,6 +427,99 @@ public class Questions {
                 hf.next = null;
             }
         }
+
+        public Node reverseKGroup(Node head, int k) {
+            if (k < 1 || head == null) {
+                return head;
+            }
+            Node current = head;
+            Node prev = null;
+            while (true) {
+                Node last = prev;
+                Node newEnd = current;
+
+                // reverse between left and right
+                Node next = current.next;
+                for (int i = 0; current != null && i < k + 1; i++) {
+                    current.next = prev;
+                    prev = current;
+                    current = next;
+                    if (next != null) {
+                        next = next.next;
+                    }
+                }
+                if (last != null) {
+                    last.next = prev;
+                } else {
+                    head = prev;
+                }
+                newEnd.next = current;
+                if (current == null) {
+                    break;
+                }
+                prev = newEnd;
+            }
+            return head;
+
+        }
+
+        public Node reverseAlternateKGroup(Node head, int k) {
+            if (k < 1 || head == null) {
+                return head;
+            }
+            Node current = head;
+            Node prev = null;
+            while (current != null) {
+                Node last = prev;
+                Node newEnd = current;
+
+                // reverse between left and right
+                Node next = current.next;
+                for (int i = 0; current != null && i < k + 1; i++) {
+                    current.next = prev;
+                    prev = current;
+                    current = next;
+                    if (next != null) {
+                        next = next.next;
+                    }
+                }
+                if (last != null) {
+                    last.next = prev;
+                } else {
+                    head = prev;
+                }
+                newEnd.next = current;
+                // skip the k nodes
+                for (int i = 0; i < k && current != null; i++) {
+                    prev = current;
+                    current = current.next;
+                }
+            }
+            return head;
+
+        }
+
+        public Node rotateRight(Node head, int k) {
+            if (k <= 0 || head == null || head.next == null) {
+                return head;
+            }
+            Node last = head;
+            int length = 1;
+            while (last.next != null) {
+                last = last.next;
+                length++;
+            }
+            last.next = head;
+            int rotations = k % length;
+            int skip = length - rotations;
+            Node newLast = head;
+            for (int i = 0; i < skip - 1; i++) {
+                newLast = newLast.next;
+            }
+            head = newLast.next;
+            newLast.next = null;
+            return head;
+        }
     }
 
     public static void main(String[] args) {
