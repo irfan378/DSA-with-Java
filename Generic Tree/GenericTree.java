@@ -49,6 +49,20 @@ public class GenericTree {
         return height;
     }
 
+    public static void traversals(Node node) {
+        // euler's left,on the way deep in the recursion,node's pre area
+        System.out.println("Node pre" + node.data);
+        for (Node child : node.children) {
+            // edge pre
+            System.out.println("Edge Pre" + node.data + "--" + child.data);
+            traversals(child);
+            System.out.println("Edge Post" + node.data + "--" + child.data);
+            // edge post
+        }
+        System.out.println("Node Post" + node.data);
+        // euler's right,on the way out of recursion,node's post area
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
