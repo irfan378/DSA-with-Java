@@ -1,4 +1,6 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class GenericTree {
@@ -61,6 +63,65 @@ public class GenericTree {
         }
         System.out.println("Node Post" + node.data);
         // euler's right,on the way out of recursion,node's post area
+    }
+
+    public static void levelOrder(Node node) {
+        Queue<Node> q = new ArrayDeque<>();
+        q.add(node);
+        while (q.size() > 0) {
+            node = q.remove();
+            System.out.print(node.data + " ");
+            for (Node child : node.children) {
+                q.add(child);
+            }
+        }
+        System.out.println(".");
+    }
+
+    public static void levelOrderLineWise(Node node) {
+        Queue<Node> mq = new ArrayDeque<>();
+        mq.add(node);
+        Queue<Node> cq = new ArrayDeque<>();
+        while (mq.size() > 0) {
+            mq.remove(node);
+            System.out.print(node.data + " ");
+            for (Node child : node.children) {
+                cq.add(child);
+            }
+            if (mq.size() == 0) {
+                mq = cq;
+                cq = new ArrayDeque<>();
+                System.out.println();
+            }
+        }
+    }
+
+    public static void levelOrderLineWiseZZ(Node node) {
+        Stack<Node> ms = new Stack<>();
+        Stack<Node> cs = new Stack<>();
+        int level = 1;
+
+        while (ms.size() > 0) {
+            node = ms.pop();
+            System.out.print(node.data + " ");
+            if (level % 2 == 1) {
+                for (int i = 0; i < node.children.size(); i++) {
+                    Node child = node.children.get(i);
+                    cs.push(child);
+                }
+            } else {
+                for (int i = node.children.size() - 1; i >= 0; i--) {
+                    Node child = node.children.get(i);
+                    cs.push(child);
+                }
+            }
+            if (ms.size() == 0) {
+                ms = cs;
+                cs = new Stack<>();
+                level++;
+                System.out.println();
+            }
+        }
     }
 
     public static void main(String[] args) {
