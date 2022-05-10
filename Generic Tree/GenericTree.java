@@ -227,6 +227,33 @@ public class GenericTree {
         return node;
     }
 
+    public static Node linearize2(Node node) {
+        if (node.children.size() == 0) {
+            return node;
+        }
+        Node lastChildTail = linearize2(node.children.get(node.children.size() - 1));
+        while (node.children.size() > 1) {
+            Node last = node.children.remove(node.children.size() - 1);
+            Node secondLast = node.children.get(node.children.size() - 1);
+            Node secondLastTail = linearize2(secondLast);
+            secondLastTail.children.add(last);
+        }
+        return lastChildTail;
+    }
+
+    public static boolean find(Node node, int data) {
+        if (node.data == data) {
+            return true;
+        }
+        for (Node child : node.children) {
+            boolean findInChild = find(child, data);
+            if (findInChild) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
