@@ -254,6 +254,22 @@ public class GenericTree {
         return false;
     }
 
+    public static ArrayList<Integer> nodeToRootPath(Node node, int data) {
+        if (node.data == data) {
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(node.data);
+            return list;
+        }
+        for (Node child : node.children) {
+            ArrayList<Integer> ptc = nodeToRootPath(child, data);
+            if (ptc.size() > 0) {
+                ptc.add(node.data);
+                return ptc;
+            }
+        }
+        return new ArrayList<>();
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
