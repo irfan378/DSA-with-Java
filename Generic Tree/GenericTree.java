@@ -270,6 +270,53 @@ public class GenericTree {
         return new ArrayList<>();
     }
 
+    public static int lowestCommonAncestor(Node node, int d1, int d2) {
+        ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+        ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+
+        int i = p1.size() - 1;
+        int j = p2.size() - 1;
+
+        while (i >= 0 && j >= 0 && p1.get(i) == p2.get(j)) {
+            i--;
+            j--;
+        }
+        i++;
+        j++;
+        return p1.get(i);
+    }
+
+    public static int distanceBetweenNodes(Node node, int d1, int d2) {
+        ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+        ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+
+        int i = p1.size() - 1;
+        int j = p2.size() - 1;
+
+        while (i >= 0 && j >= 0 && p1.get(i) == p2.get(j)) {
+            i--;
+            j--;
+        }
+        i++;
+        j++;
+        return i + j;
+    }
+
+    public static boolean areSimilar(Node n1, Node n2) {
+        if (n1.children.size() != n2.children.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < n1.children.size(); i++) {
+            Node c1 = n1.children.get(i);
+            Node c2 = n2.children.get(i);
+            if (areSimilar(c1, c2) == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
