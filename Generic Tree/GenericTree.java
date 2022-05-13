@@ -317,6 +317,25 @@ public class GenericTree {
         return true;
     }
 
+    public static boolean areMirror(Node n1, Node n2) {
+        if (n1.children.size() != n2.children.size()) {
+            return false;
+        }
+        for (int i = 0; i < n1.children.size(); i++) {
+            int j = n2.children.size() - 1 - i;
+            Node c1 = n1.children.get(i);
+            Node c2 = n2.children.get(j);
+            if (areMirror(c1, c2)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isSymmetric(Node node) {
+        return areMirror(node, node);
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
