@@ -375,6 +375,35 @@ public class GenericTree {
         }
     }
 
+    public static int kthLargest(Node node, int k) {
+        floor = Integer.MIN_VALUE;
+        int factor = Integer.MAX_VALUE;
+        for (int i = 0; i < k; i++) {
+            ceilAndFloor(node, factor);
+            factor = floor;
+            floor = Integer.MIN_VALUE;
+        }
+        return factor;
+    }
+
+    static int msn = 0;
+    static int ms = Integer.MIN_VALUE;
+
+    public static int retSumAndCalculateMSST(Node node) {
+        int sum = 0;
+
+        for (Node child : node.children) {
+            int csum = retSumAndCalculateMSST(child);
+            sum += csum;
+        }
+        sum += node.data;
+        if (sum > ms) {
+            msn = node.data;
+            ms = sum;
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
