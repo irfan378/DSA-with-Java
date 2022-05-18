@@ -404,6 +404,28 @@ public class GenericTree {
         return sum;
     }
 
+    static int diameter = 0;
+
+    public static int calculateDiameterReturnHeight(Node node) {
+        int dcheight = -1;
+        int sdcheight = -1;
+        for (Node child : node.children) {
+            int childHeight = calculateDiameterReturnHeight(child);
+            if (childHeight > dcheight) {
+                sdcheight = dcheight;
+                dcheight = childHeight;
+            } else if (childHeight > sdcheight) {
+                sdcheight = childHeight;
+            }
+        }
+        int cand = dcheight + sdcheight + 2;
+        if (cand > diameter) {
+            diameter = cand;
+        }
+        dcheight += 1;
+        return dcheight;
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
