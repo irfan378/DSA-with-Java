@@ -426,6 +426,41 @@ public class GenericTree {
         return dcheight;
     }
 
+    static class Pair2 {
+        Node node;
+        int state;
+
+        Pair2(Node node, int state) {
+            this.node = node;
+            this.state = state;
+        }
+    }
+
+    public static void IterativePreandPostOrder(Node node) {
+        Stack<Pair2> st = new Stack<>();
+        st.push(new Pair2(node, -1));
+
+        String pre = "";
+        String post = "";
+        while (st.size() > 0) {
+            Pair2 top = st.peek();
+            if (top.state == -1) {
+                pre += top.node.data + " ";
+                top.state++;
+            } else if (top.state == top.node.children.size()) {
+                post += top.node.data + " ";
+                st.pop();
+            } else {
+                Pair2 cp = new Pair2(top.node.children.get(top.state), state);
+                st.push(cp);
+                top.state++;
+            }
+
+        }
+        System.out.println(pre);
+        System.out.println(post);
+    }
+
     public static void main(String[] args) {
         int[] arr = { 10, 20, 50, -1, 60, -1, -1, 30, 70, -1, 80, 110, -1, 10, -1, -1, 90, -1, -1, 40, 100, -1, -1,
                 -1 };
