@@ -77,6 +77,17 @@ public class BinaryTree {
         return th;
     }
 
+    public static void traversal(Node node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.data + "in Preorder");
+        traversal(node.left);
+        System.out.println(node.data + "in inorder");
+        traversal(node.right);
+        System.out.println(node.data + "in Postorder");
+    }
+
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
