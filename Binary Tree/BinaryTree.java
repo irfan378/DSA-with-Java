@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -86,6 +88,25 @@ public class BinaryTree {
         System.out.println(node.data + "in inorder");
         traversal(node.right);
         System.out.println(node.data + "in Postorder");
+    }
+    public static void levelOrder(Node node){
+        Queue<Node> mq=new ArrayDeque<>();
+        mq.add(node);
+        while (mq.size()>0) {
+            int count=mq.size();
+            for (int i = 0; i < count; i++) {
+                node=mq.remove();
+                System.out.print(node.data+" ");
+                if (node.left!=null) {
+                    mq.add(node.left);
+                }
+                if (node.right!=null) {
+                    mq.add(node.right);
+                }
+            }
+            System.out.println();
+            
+        }
     }
 
     public static void main(String[] args) {
