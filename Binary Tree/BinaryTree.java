@@ -1,4 +1,5 @@
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -108,7 +109,74 @@ public class BinaryTree {
             
         }
     }
+    public static void iterativePrePostInTreverasls(Node node){
+        Stack<Pair> st=new Stack<>();
+        Pair rtp=new Pair(node, 1);
+        st.push(rtp);
+        String pre="";
+        String in="";
+        String post="";
+        while (st.size()>0) {
+            Pair top=st.peek();
+            if (top.state==1) {
+                // pre,state++,left
+                pre+=top.node.data+" ";
+                top.state++;
+                if (top.node.left!=null) {
+                    Pair lp=new Pair(top.node.left, 1);
+                    st.push(lp);
+                }
 
+            }else if (top.state==2) {
+                // in,state++,right
+                in+=top.node.data+" ";
+                top.state++;
+                if (top.node.right!=null) {
+                    Pair rp=new Pair(top.node.right, 1);
+                    st.push(rp);
+                }
+            }else{
+                // post,pop
+                post+=top.node.data+" ";
+                st.pop();
+            }
+        }
+        System.out.println(pre);
+        System.out.println(in);
+        System.out.println(post);
+    }
+    static ArrayList<Integer> path;
+    public static boolean find(Node node,int data){
+        if (node==null) {
+            return false;
+        }
+        if (node.data==data) {
+            path.add(node.data);
+            return true;
+        }
+        boolean filc=find(node.left, data);
+        if (filc) {
+            path.add(node.data);
+            return true;
+        }
+        boolean firc=find(node.right, data);
+        if (firc) {
+            path.add(node.data);
+            return true;
+        }
+        return false;
+    }
+ public static void printKLevelsDown(Node node,int k){
+    if (node==null||k<0) {
+        return;
+    }
+    if (k==0) {
+        System.out.println(node.data);
+    }
+    printKLevelsDown(node.left, k-1);
+    printKLevelsDown(node.right, k-1);
+
+}
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
@@ -147,7 +215,7 @@ public class BinaryTree {
             } else {
                 st.pop();
             }
-            display(root);
+           iterativePrePostInTreverasls(root);
         }
     }
 }
