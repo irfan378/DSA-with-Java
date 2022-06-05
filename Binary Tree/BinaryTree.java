@@ -187,9 +187,24 @@ public class BinaryTree {
         path = new ArrayList<>();
         find(node, data);
         for (int i = 0; i < path.size(); i++) {
-            printKLevelsDown(path.get(i), k - i, i == 0 ? null : path.get(i-1));
+            printKLevelsDown(path.get(i), k - i, i == 0 ? null : path.get(i - 1));
         }
 
+    }
+
+    public static void pathToLeafFromRoot(Node node, String path, int sum, int lo, int hi) {
+        if (node == null) {
+            return;
+        }
+        if (node.left == null && node.right == null) {
+            sum += node.data;
+            if (sum >= lo && sum <= hi) {
+                System.out.println(path + node.data);
+            }
+            return;
+        }
+        pathToLeafFromRoot(node.left, path + node.data + " ", sum + node.data, lo, hi);
+        pathToLeafFromRoot(node.right, path + node.data + " ", sum + node.data, lo, hi);
     }
 
     public static void main(String[] args) {
