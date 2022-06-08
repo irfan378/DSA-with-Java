@@ -206,7 +206,18 @@ public class BinaryTree {
         pathToLeafFromRoot(node.left, path + node.data + " ", sum + node.data, lo, hi);
         pathToLeafFromRoot(node.right, path + node.data + " ", sum + node.data, lo, hi);
     }
+    public static Node createLeftCloneTree(Node node){
+        if (node ==null) {
+            return null;
+        }
+        Node lcr=createLeftCloneTree(node.left);
+        Node rcr=createLeftCloneTree(node.right);
 
+        Node nn=new Node(node.data, lcr, null);
+        node.left=nn;
+        node.right=rcr;
+        return node;
+    }
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
