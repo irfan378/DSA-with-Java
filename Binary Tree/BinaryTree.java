@@ -206,18 +206,43 @@ public class BinaryTree {
         pathToLeafFromRoot(node.left, path + node.data + " ", sum + node.data, lo, hi);
         pathToLeafFromRoot(node.right, path + node.data + " ", sum + node.data, lo, hi);
     }
-    public static Node createLeftCloneTree(Node node){
-        if (node ==null) {
+
+    public static Node createLeftCloneTree(Node node) {
+        if (node == null) {
             return null;
         }
-        Node lcr=createLeftCloneTree(node.left);
-        Node rcr=createLeftCloneTree(node.right);
+        Node lcr = createLeftCloneTree(node.left);
+        Node rcr = createLeftCloneTree(node.right);
 
-        Node nn=new Node(node.data, lcr, null);
-        node.left=nn;
-        node.right=rcr;
+        Node nn = new Node(node.data, lcr, null);
+        node.left = nn;
+        node.right = rcr;
         return node;
     }
+
+    public static Node tranBackFromLeftClonedTree(Node node) {
+        if (node == null) {
+            return null;
+        }
+        Node lnn = tranBackFromLeftClonedTree(node.left.left);
+        Node rnn = tranBackFromLeftClonedTree(node.right);
+
+        node.left = lnn;
+        node.right = rnn;
+
+        return node;
+    }
+
+    public static void printSingleChildNodes(Node node, Node parent) {
+        if (parent != null && parent.left == node && parent.right == null) {
+            System.out.println(node.data);
+        } else if (parent != null && parent.right == node && parent.left == null) {
+            System.out.println(node.data);
+        }
+        printSingleChildNodes(node.left, node);
+        printSingleChildNodes(node.right, node);
+    }
+
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
