@@ -272,6 +272,44 @@ public class BinaryTree {
         return ts;
     }
 
+    static boolean isBal = true;
+
+    public static int isBalanced(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int lh = isBalanced(node.left);
+        int rh = isBalanced(node.right);
+
+        int gap = Math.abs(lh - rh);
+        if (gap > 1) {
+            isBal = false;
+        }
+        int th = Math.max(lh, rh) + 1;
+        return th;
+    }
+
+    public static class BalPair {
+        int ht;
+        boolean isBal;
+    }
+
+    public static BalPair isBal(Node node) {
+        if (node == null) {
+            BalPair bp = new BalPair();
+            bp.ht = 0;
+            bp.isBal = true;
+            return bp;
+        }
+        BalPair lp = isBal(node.right);
+        BalPair rp = isBal(node.left);
+
+        BalPair mp = new BalPair();
+        mp.isBal = Math.abs(lp.ht - rp.ht) <= 1 && lp.isBal && rp.isBal;
+        mp.ht = Math.max(lp.ht, rp.ht) + 1;
+        return mp;
+    }
+
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
