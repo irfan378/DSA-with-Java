@@ -310,6 +310,19 @@ public class BinaryTree {
         return mp;
     }
 
+    public static int diameter1(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int ld = diameter1(node.left);
+        int rd = diameter1(node.right);
+        int f = height(node.left) + height(node.right) + 2;
+
+        int dia = Math.max(f, Math.max(ld, rd));
+        return dia;
+
+    }
+
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
