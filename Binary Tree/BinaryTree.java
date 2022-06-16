@@ -111,6 +111,30 @@ public class BinaryTree {
         }
     }
 
+    public static class DiaPair {
+        int ht;
+        int dia;
+    }
+
+    public static DiaPair diameter2(Node node) {
+        if (node == null) {
+            DiaPair bp = new DiaPair();
+            bp.ht = -1;
+            bp.dia = 0;
+            return bp;
+        }
+        DiaPair lp = diameter2(node.left);
+        DiaPair rp = diameter2(node.right);
+
+        DiaPair mp = new DiaPair();
+        mp.ht = Math.max(lp.ht, rp.ht) + 1;
+
+        int fes = lp.ht + rp.ht + 2;
+        mp.dia = Math.max(fes, Math.max(lp.dia, rp.dia));
+
+        return mp;
+    }
+
     public static void iterativePrePostInTreverasls(Node node) {
         Stack<Pair> st = new Stack<>();
         Pair rtp = new Pair(node, 1);
