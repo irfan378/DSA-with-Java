@@ -344,7 +344,32 @@ public class BinaryTree {
 
         int dia = Math.max(f, Math.max(ld, rd));
         return dia;
+    }
 
+    public static class BSTPair {
+        boolean isBST;
+        int min;
+        int max;
+    }
+
+    public static BSTPair isBST(Node node) {
+        if (node == null) {
+            BSTPair bp = new BSTPair();
+            bp.min = Integer.MAX_VALUE;
+            bp.max = Integer.MIN_VALUE;
+            bp.isBST = true;
+            return bp;
+        }
+        BSTPair lp = isBST(node.left);
+        BSTPair rp = isBST(node.right);
+
+        BSTPair mp = new BSTPair();
+        mp.isBST = lp.isBST && rp.isBST && (node.data >= lp.max && node.data <= rp.min);
+
+        mp.min = Math.min(node.data, Math.min(lp.min, rp.min));
+        mp.max = Math.max(node.data, Math.max(lp.max, rp.max));
+
+        return mp;
     }
 
     public static void main(String[] args) {
