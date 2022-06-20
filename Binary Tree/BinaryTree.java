@@ -372,6 +372,46 @@ public class BinaryTree {
         return mp;
     }
 
+    public static class BSTPair2 {
+        boolean isBST;
+        int min;
+        int max;
+        Node root;
+        int size;
+    }
+
+    public static BSTPair2 LargestBST(Node node) {
+        if (node == null) {
+            BSTPair2 bp = new BSTPair2();
+            bp.min = Integer.MAX_VALUE;
+            bp.max = Integer.MIN_VALUE;
+            bp.root = null;
+            bp.size = 0;
+            bp.isBST = true;
+            return bp;
+        }
+        BSTPair2 lp = LargestBST(node.left);
+        BSTPair2 rp = LargestBST(node.right);
+
+        BSTPair2 mp = new BSTPair2();
+        mp.isBST = lp.isBST && rp.isBST && (node.data >= lp.max && node.data <= rp.min);
+
+        mp.min = Math.min(node.data, Math.min(lp.min, rp.min));
+        mp.max = Math.max(node.data, Math.max(lp.max, rp.max));
+
+        if (mp.isBST) {
+            mp.root = node;
+            mp.size = lp.size + rp.size + 1;
+        } else if (lp.size > rp.size) {
+            mp.root = lp.root;
+            mp.size = lp.size;
+        } else {
+            mp.root = rp.root;
+            mp.size = rp.size;
+        }
+        return mp;
+    }
+
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
