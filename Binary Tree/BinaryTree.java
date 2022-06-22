@@ -412,6 +412,39 @@ public class BinaryTree {
         return mp;
     }
 
+    public static class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+    public static TreeNode buildTree(int[] preorder, int psi, int pei, int[] inorder, int isi, int iei) {
+        if (isi > iei) {
+            return null;
+        }
+        int idx = isi;
+        while (inorder[idx] != preorder[psi])
+            idx++;
+        int colse = idx - isi;
+
+        TreeNode node = new TreeNode(preorder[psi]);
+
+        node.left = buildTree(preorder, psi + 1, psi + colse, inorder, isi, idx - 1);
+        node.right = buildTree(preorder, psi + colse + 1, pei, inorder, idx + 1, iei);
+
+        return node;
+    }
+
+    public static TreeNode buildTree(int[] preorder, int[] inorder) {
+        int n = preorder.length;
+
+        return buildTree(preorder, 0, n - 1, inorder, 0, n - 1);
+    }
+
     public static void main(String[] args) {
         Integer[] arr = { 50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null,
                 null };
