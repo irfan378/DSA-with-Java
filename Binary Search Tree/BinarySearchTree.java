@@ -124,6 +124,29 @@ public class BinarySearchTree {
         return node;
     }
 
+    static int sum = 0;
+
+    public static void rwsol(Node node) {
+        if (node == null) {
+            return;
+        }
+        rwsol(node.right);
+        int od = node.data;
+        node.data = sum;
+        sum += od;
+        rwsol(node.left);
+    }
+
+    public static int lca(Node node, int d1, int d2) {
+        if (d1 < node.data && d2 < node.data) {
+            return lca(node.left, d1, d2);
+        } else if (d1 > node.data && d2 > node.data) {
+            return lca(node.right, d1, d2);
+        } else {
+            return node.data;
+        }
+    }
+
     public static void main(String[] args) {
 
     }
