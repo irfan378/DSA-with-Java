@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BinarySearchTree {
     public static class Node {
         int data;
@@ -146,6 +148,37 @@ public class BinarySearchTree {
             return node.data;
         }
     }
+
+    public static void pir(Node node, int d1, int d2) {
+        if (node == null) {
+            return;
+        }
+        if (d1 < node.data && d2 < node.data) {
+            pir(node.left, d1, d2);
+        } else if (d1 > node.data && d2 > node.data) {
+            pir(node.right, d1, d2);
+        } else {
+            pir(node.left, d1, d2);
+            System.out.println(node.data);
+            pir(node.right, d1, d2);
+        }
+    }
+
+    public static void targetSumPair(Node root, Node node, int tar) {
+        if (node == null) {
+            return;
+        }
+        targetSumPair(root, node.left, tar);
+
+        int comp = tar - node.data;
+        if (node.data < comp) {
+            if (find(root, comp) == true) {
+                System.out.println(node.data + " " + comp);
+            }
+        }
+        targetSumPair(root, node.right, tar);
+    }
+   
 
     public static void main(String[] args) {
 
