@@ -35,6 +35,20 @@ public class Graphs {
 
     }
 
+    public static void printAllPaths(ArrayList<Edge>[] graph, int src, int dest, boolean[] visited, String psf) {
+        if (src == dest) {
+            System.out.println(psf);
+            return;
+        }
+        visited[src] = true;
+        for (Edge edge : graph[src]) {
+            if (visited[edge.nbr] == false) {
+                printAllPaths(graph, edge.nbr, dest, visited, psf + edge.nbr);
+            }
+        }
+        visited[src] = false;
+    }
+
     public static void main(String[] args) throws NumberFormatException, IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
