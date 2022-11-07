@@ -4,6 +4,7 @@ public class ClimbingStairs {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
+        scn.close();
         int cp = countPaths(n, new int[n + 1]);
         System.out.println(cp);
     }
@@ -37,6 +38,6 @@ public class ClimbingStairs {
                 dp[i]=dp[i-1]+dp[1-2]+dp[i-3];
             }
         }
-        return dp[n];
+        return dp[n];         
     }
 }
