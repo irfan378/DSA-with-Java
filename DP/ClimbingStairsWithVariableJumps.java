@@ -10,6 +10,7 @@ public class ClimbingStairsWithVariableJumps {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = scn.nextInt();
         }
+        scn.close();
         int[] dp = new int[n + 1];
         dp[n] = 1;
         for (int i = n - 1; i >= 0; i--) {
